@@ -1,0 +1,53 @@
+## Pseudo-Distributed Mode Steps:
+
+tar xzvf hadoop-3.0.0.tar.gz
+cd
+
+vi ./hadoop/etc/hadoop/core-site.xml
+
+## add these lines to the file ##
+
+<configuration>
+<property>
+<name>fs.defaultFS</name>
+<value>hdfs://10.1.37.12:9000</value>
+</property>
+</configuration>
+
+vi ./hadoop/etc/hadoop/hdfs-site.xml
+
+## add these lines to the file ##
+
+<configuration>
+<property>
+<name>dfs.replication</name>
+<value>1</value>
+</property>
+</configuration>
+
+hdfs namenode -format
+
+## to start hadoop cluster
+start-dfs.sh
+
+hdfs dfs -put ~/hadoop/etc/hadoop input
+
+hadoop jar ~/hadoop/share/hadoop/input output
+
+hadoop fs -cat /home/ubuntu/output/output.txt
+
+
+
+### Fully Distributed Mode Setup:
+
+Install Hadoop on all 3 instances. (1 namenode and 2 datanodes)
+
+tar xzvf hadoop-3.0.0.tar.gz
+
+* Configure the hadoop -env.sh, core-site.xml, yarn-site.xml,
+mapred-site.xml
+
+* Configure the hdfs-site.xml file
+
+* hdfs namenode -format
+start-dfs.sh

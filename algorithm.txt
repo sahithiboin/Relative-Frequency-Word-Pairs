@@ -1,0 +1,16 @@
+### Algorithm Steps:
+
+1. Setup a basic Mapreduce workflow by writing the necessary configurations.
+2. Create a Mapper class and within the Mapper class, parse the data in such
+a way that the mapper forms a key and value paired of words such as (word 1, word 2)
+and words (word 1, &)
+3. Combiner counts the number of occurences of each word pair prior to sending it
+to the reducer.
+4. The reducer checks if the key is a single word or a word pair.
+If it's a single word, check if the key is equal to the current word.
+5. If yes, count the total occurences of this word.
+If not, set it as the current word and count the number of occurences.
+6. If it's a word pair, count the total number of occurences of the word pair and
+then calculate the relative frequencies.
+7. Add this word pairs to a Treeset, and retrieve the top 100 word pairs.
+8. Print the output to a output file.
